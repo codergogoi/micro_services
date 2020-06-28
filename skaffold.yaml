@@ -1,0 +1,36 @@
+apiVersion: skaffold/v2alpha3
+kind: Config
+deploy:
+  kubectl:
+    manifests:
+      - ./infra/k8s/* # find the docker deployment yaml files
+build:
+  local:
+    push: false # make sure it is not pushing the build everytime  we made to docker hub
+  # googleCloudBuild:
+  #   projectId: auth
+  artifacts: # [] all build images
+    - image: codergogoi/auth # use google cloud project ID instead of docker id
+      context: auth
+      docker:
+        dockerfile: Dockerfile
+      sync: # tell to Skaffola keep watch changes on the source files
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+    - image: codergogoi/client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+    - image: codergogoi/tickets # use google cloud project ID instead of docker id
+      context: tickets
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
