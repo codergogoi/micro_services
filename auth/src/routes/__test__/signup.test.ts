@@ -18,7 +18,7 @@ it('return a 400 with an invalid email', async () => {
       email: 'akdhjskhfkj',
       password: 'password',
     })
-    .expect(201);
+    .expect(200);
 });
 
 it('disallows duplicate emails', async () => {
