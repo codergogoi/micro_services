@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node-dev --poll src/index.ts",
-    "test": "jest --watchAll --no-cache"
+    "test": "jest --watchAll --no-cache",
+    "test:ci": "jest"
   },
   "jest": {
     "preset": "ts-jest",
@@ -23,13 +24,15 @@
     "@types/express-validator": "^3.0.0",
     "@types/jsonwebtoken": "^8.5.0",
     "@types/mongoose": "^5.7.28",
-    "codergogoi-common": "^1.0.5",
+    "codergogoi-common": "^1.0.11",
     "cookie-session": "^1.4.0",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
     "express-validator": "^6.6.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.20",
+    "mongoose-update-if-current": "^1.4.0",
+    "node-nats-streaming": "^0.3.2",
     "ts-node-dev": "^1.0.0-pre.49",
     "typescript": "^3.9.5"
   },

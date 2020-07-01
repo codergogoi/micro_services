@@ -10,6 +10,10 @@ spec:
     - host: ticketing.dev # domain name will redirect the service
       http:
         paths:
+          - path: /api/payments/?(.*)
+            backend:
+              serviceName: payments-srv
+              servicePort: 3000
           - path: /api/users/?(.*)
             backend:
               serviceName: auth-srv
@@ -17,6 +21,10 @@ spec:
           - path: /api/tickets/?(.*)
             backend:
               serviceName: tickets-srv
+              servicePort: 3000
+          - path: /api/orders/?(.*)
+            backend:
+              serviceName: orders-srv
               servicePort: 3000
           - path: /?(.*)
             backend:
