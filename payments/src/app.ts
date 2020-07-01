@@ -3,8 +3,9 @@ import 'express-async-errors';
 import { json } from 'body-parser';
 import cookieSession from 'cookie-session';
 
-import { errorHandler, NotFoundError, currentUser } from 'codergogoi-common';import { createChargeRouter } from './routes/new';
-\
+import { errorHandler, NotFoundError, currentUser } from 'codergogoi-common';
+import { createChargeRouter } from './routes/new';
+
 const app = express();
 app.set('trust proxy', true); // Traffic will reach to our app through Ingress Inginx
 app.use(json());
