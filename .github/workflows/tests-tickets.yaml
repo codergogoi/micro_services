@@ -2,6 +2,8 @@ name: tests-tickets
 
 on:
   pull_request:
+    paths:
+      - 'tickets/**'
 
 jobs:
   build:
@@ -9,4 +11,3 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: cd tickets && npm install && npm run test:ci
-        
