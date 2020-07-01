@@ -10,8 +10,6 @@ import { signupRouter } from './routes/signup';
 
 import { errorHandler, NotFoundError } from 'codergogoi-common';
 
-//intenational comment to test deploy workflow // remove it on production
-
 const app = express();
 app.set('trust proxy', true); // Traffic will reach to our app through Ingress Inginx
 app.use(json());
