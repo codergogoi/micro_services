@@ -26,8 +26,32 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: codergogoi/tickets # use google cloud project ID instead of docker id
+    - image: codergogoi/tickets
       context: tickets
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+    - image: codergogoi/orders
+      context: orders
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+    - image: codergogoi/expiration
+      context: expiration
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+    - image: codergogoi/payments
+      context: payments
       docker:
         dockerfile: Dockerfile
       sync:

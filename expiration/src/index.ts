@@ -1,8 +1,5 @@
-import monggose from 'mongoose';
-import { app } from './app';
 import { natsWrapper } from './nats-wrapper';
 import { OrderCreatedListener } from './events/listeners/order-created-listener';
-import { OrderCancelledListener } from './events/listeners/order-cancelled-listener';
 
 const startServer = async () => {
   if (!process.env.JWT_KEY) {
@@ -40,21 +37,9 @@ const startServer = async () => {
     process.on('SIGTERM', () => natsWrapper.client.close());
 
     new OrderCreatedListener(natsWrapper.client).listen();
-    new OrderCancelledListener(natsWrapper.client).listen();
-
-    await monggose.connect(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-    });
-    console.log('Connected to mongo db Tickets');
   } catch (err) {
     console.log(`Error on Mongo connect ${err}`);
   }
-
-  app.listen(3000, () => {
-    console.log(`Listening port 3000`);
-  });
 };
 
 startServer();
